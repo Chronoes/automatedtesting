@@ -40,19 +40,19 @@ public class EmployeesTest {
 
     @Test
     public void testJuniorPaymentWithHeroBonus() throws Exception {
-        int expected = Employees.Junior.doublePay(30) + Employees.Junior.seniority * Employees.HERO_BASE_BONUS;
+        int expected = Employees.Junior.doublePay(30) + Employees.Junior.payHeroBonus(30);
         assertEquals(expected, Employees.Junior.pay(30));
     }
 
     @Test
     public void testSeniorPaymentWithHeroBonus() throws Exception {
-        int expected = Employees.Senior.doublePay(38) + Employees.Senior.seniority * Employees.HERO_BASE_BONUS;
+        int expected = Employees.Senior.doublePay(38) + Employees.Senior.payHeroBonus(38);
         assertEquals(expected, Employees.Senior.pay(38));
     }
 
     @Test
     public void testSpecialistPaymentWithHeroBonus() throws Exception {
-        int expected = Employees.Specialist.triplePay(25) + Employees.Specialist.seniority * Employees.HERO_BASE_BONUS;
+        int expected = Employees.Specialist.triplePay(25) + Employees.Specialist.payHeroBonus(25);
         assertEquals(expected, Employees.Specialist.pay(25));
     }
 }

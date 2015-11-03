@@ -30,20 +30,17 @@ public enum Employees {
         return payPerHour * ( 3 * workHours - normalWorkHours);
     }
 
+    public int payForOvertime(int workHours) {
+        return seniority >= SENIORITY_PAY_THRESHOLD ? triplePay(workHours) : doublePay(workHours);
+    }
+
+    public int payHeroBonus(int workHours) {
+        return workHours > HERO_WORK_HOURS ? HERO_BASE_BONUS * seniority : 0;
+    }
+
     public int pay(int workHours) {
-        int totalPayment = 0;
-        if (workHours > normalWorkHours) {
-            if (seniority >= SENIORITY_PAY_THRESHOLD) {
-                totalPayment += triplePay(workHours);
-            } else {
-                totalPayment += doublePay(workHours);
-            }
-        } else {
-            totalPayment += payPerHour * workHours;
-        }
-        if (workHours > HERO_WORK_HOURS) {
-            totalPayment += HERO_BASE_BONUS * seniority;
-        }
+        int totalPayment = workHours > normalWorkHours ? payForOvertime(workHours) : payPerHour * workHours;
+        totalPayment += payHeroBonus(workHours);
         return totalPayment;
     }
 }
